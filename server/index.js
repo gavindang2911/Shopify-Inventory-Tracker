@@ -2,7 +2,6 @@ const express = require('express');
 const database = require('./db/index');
 
 const app = express();
-const mongoose = require('mongoose');
 
 require('dotenv').config();
 
