@@ -8,8 +8,10 @@ require('dotenv').config();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const productRoute = require('./routes/product.route')
-app.use('/api', productRoute);
+const inventoryRoute = require('./routes/product.route')
+app.use('/api', inventoryRoute);
+const shipmentRoute = require('./routes/shipment.route')
+app.use('/api', shipmentRoute);
 
 
 const PORT = process.env.PORT || 8000;

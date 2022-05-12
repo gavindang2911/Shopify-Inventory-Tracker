@@ -28,7 +28,7 @@ const getProductById = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(id))
     return res.status(404).send('No product found with provided id');
 
-  await Product.findOne({ _id: req.params.id })
+  await Product.findOne({ _id: id })
     .then((doc) => {
       return res.status(200).json({
         success: true,
@@ -86,7 +86,7 @@ const deleteProduct = (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(id))
     return res.status(404).send('No product found with provided id');
 
-  Product.findOneAndDelete({ _id: req.params.id })
+  Product.findOneAndDelete({ _id: id })
     .then((doc) => {
       return res.status(200).json({
         success: true,
