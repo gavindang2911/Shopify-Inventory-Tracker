@@ -1,15 +1,10 @@
 const mongoose = require('mongoose');
-
+const Product = require('../models/product.model');
 const Shipment = require('../models/shipment.model');
 
 const getAllShipments = async (req, res) => {
   await Shipment.find({})
     .then((doc) => {
-      if (!doc)
-        return res.status(404).json({
-          success: false,
-          msgError: 'Shipment is not found',
-        });
       return res.status(200).json({
         success: true,
         shipmentData: doc,
@@ -26,10 +21,15 @@ const getByIdShipment = async (req, res) => {
   const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id))
-    return res.status(404).send('No shipment found');
+    return res.status(404).send('Invalid Shipment ID');
 
   await Shipment.findOne({ _id: id })
     .then((doc) => {
+      if (doc.length)
+        return res.status(404).json({
+          success: false,
+          msgError: 'Shipment is not found',
+        });
       return res.status(200).json({
         success: true,
         shipmentData: doc,
@@ -51,23 +51,16 @@ const createShipment = (req, res) => {
       for (let i = 0; i < shipment.orders.length; i++) {
         const productId = shipment.orders[i].id;
         if (!mongoose.Types.ObjectId.isValid(productId))
-          return res.status(404).send('No product found with provided id');
-        Product.findOne({ _id: productId }, (product) => {
+          return res.status(404).send('Invalid Shipment Id');
+        Product.findOne({ _id: productId }, (err, product) => {
           product.quantity = product.quantity - shipment.orders[i].quantity;
           product
             .save()
             .then((doc) => {
-              res.status(200).json({
-                success: true,
-                productData: doc,
-                message: "Updated products successfully"
-              });
+              console.log(doc);
             })
             .catch((err) => {
-              res.status(403).json({
-                success: false,
-                msgError: err,
-              });
+              console.log(err);
             });
         });
       }
@@ -75,14 +68,14 @@ const createShipment = (req, res) => {
       res.status(200).json({
         success: true,
         shipmentData: shipment,
-        message: "Shipment created successfully"
+        message: 'Shipment created successfully',
       });
     })
     .catch((err) => {
       res.status(403).json({
         success: false,
         msgError: err,
-        message: "Shipment created fail"
+        message: 'Shipment created fail',
       });
     });
 };
@@ -90,7 +83,7 @@ const createShipment = (req, res) => {
 const deleteByIdShipment = (req, res) => {
   const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id))
-    return res.status(404).send('No shipment found');
+    return res.status(404).send('Invalid Shipment Id');
 
   Shipment.findOneAndDelete({ _id: id })
     .then((doc) => {
@@ -108,8 +101,14 @@ const deleteByIdShipment = (req, res) => {
 };
 
 module.exports = {
-    getAllShipments,
-    getByIdShipment,
+  getAllShipments,
+  getByIdShipment,
   createShipment,
-  deleteByIdShipment
+  deleteByIdShipment,
 };
+
+// if (!doc.length)
+// return res.status(404).json({
+//   success: false,
+//   msgError: 'We do not have any shipments',
+// });

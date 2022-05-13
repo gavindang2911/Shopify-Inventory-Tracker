@@ -8,7 +8,7 @@ const getAllProducts = async (req, res) => {
       if (!doc)
         return res.status(404).json({
           success: false,
-          msgError: 'Product is not found',
+          msgError: 'We do not have any Products',
         });
       return res.status(200).json({
         success: true,
