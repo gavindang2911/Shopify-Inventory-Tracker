@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const shipmentSchema = new Schema({
   firstName: { type: String, required: true, maxlength: 100 },
   middleName: { type: String, maxlength: 100 },
-  lastname: { type: String, required: true, maxlength: 100 },
+  lastName: { type: String, required: true, maxlength: 100 },
   phoneNumber: { type: Number, required: true },
   address: { type: String, required: true, maxlength: 100 },
   orders: {
@@ -12,7 +12,6 @@ const shipmentSchema = new Schema({
         {
           id: { type: Schema.Types.ObjectId, ref: "Product" },
           quantity: { type: Number },
-          product_name: String,
         },
       ],
       required: true,
