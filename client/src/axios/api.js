@@ -5,105 +5,47 @@ const apiURL = axios.create({
 });
 
 const createProduct = (payload) => {
-  apiURL
-    .post(`/product`, payload)
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  return apiURL.post(`/product`, payload);
 };
 const getAllProducts = () => {
   return apiURL.get(`/products`);
-
 };
 const updateProduct = (id, payload) => {
-  apiURL
-    .put(`/product/${id}`, payload)
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  return apiURL.put(`/product/${id}`, payload);
 };
 const deleteProduct = (id) => {
-  apiURL
-    .delete(`/product/${id}`)
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  return apiURL.delete(`/product/${id}`);
 };
 const getProduct = (id) => {
-  apiURL
-    .get(`/product/${id}`)
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  return apiURL.get(`/product/${id}`);
 };
 
-
 const getShipments = () => {
-    apiURL
-      .get(`/shipments`)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  return apiURL.get(`/shipments`);
+};
 
-  const createShipment = (payload) => {
-    apiURL
-      .post(`/shipment`, payload)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+const createShipment = (payload) => {
+  return apiURL.post(`/shipment`, payload);
+};
 
-  const updateShipment = (id, payload) => {
-    apiURL
-      .put(`/shipment/${id}`, payload)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+const updateShipment = (id, payload) => {
+  return apiURL.put(`/shipment/${id}`, payload);
+};
 
-  const deleteShipment = (id) => {
-    apiURL
-      .delete(`/shipment/${id}`)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+const deleteShipment = (id) => {
+  return apiURL.delete(`/shipment/${id}`);
+};
 
-  const apis = {
-    createProduct,
-    getAllProducts,
-    updateProduct,
-    deleteProduct,
-    getProduct,
-    getShipments,
-    createShipment,
-    updateShipment,
-    deleteShipment
-  };
+const apis = {
+  createProduct,
+  getAllProducts,
+  updateProduct,
+  deleteProduct,
+  getProduct,
+  getShipments,
+  createShipment,
+  updateShipment,
+  deleteShipment,
+};
 
-  export default apis;
+export default apis;
