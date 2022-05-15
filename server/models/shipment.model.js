@@ -11,6 +11,7 @@ const shipmentSchema = new Schema({
       type: [
         {
           id: { type: Schema.Types.ObjectId, ref: "Product" },
+          name: {type: String},
           quantity: { type: Number },
         },
       ],

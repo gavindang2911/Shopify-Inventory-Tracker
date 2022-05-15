@@ -57,10 +57,10 @@ const createShipment = (req, res) => {
           product
             .save()
             .then((doc) => {
-              console.log(doc);
+              // console.log(doc);
             })
             .catch((err) => {
-              console.log(err);
+              // console.log(err);
             });
         });
       }
