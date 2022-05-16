@@ -11,7 +11,9 @@ function ShipmentCard(props) {
   };
   return (
     <div className="card" style={styles}>
-      <div>{props.shipment.firstName} {props.shipment.lastName}</div>
+      <div>
+        {props.shipment.firstName} {props.shipment.lastName}
+      </div>
       <div
         className="card-body"
         style={{
@@ -19,10 +21,12 @@ function ShipmentCard(props) {
           width: 300,
         }}
       >
-        <h5 className="card-title">{props.shipment.createdAt.slice(0,19)}</h5>
+        <h5 className="card-title">{props.shipment.createdAt.slice(0, 19)}</h5>
         <h6 className="text-muted">Address: {props.shipment.address}</h6>
         {props.shipment.orders.map((item, id) => (
-            <li className="card-text" key={id}>{item.name}: {item.quantity}</li>
+          <li className="card-text" key={id}>
+            {item.name}: {item.quantity}
+          </li>
         ))}
         {/* <p className="card-text">{props.product.description}</p> */}
         {/* <h6 className="text-muted">
@@ -31,20 +35,14 @@ function ShipmentCard(props) {
         <br />
         <div className="d-flex  justify-content-around">
           <a
-            className="btn btn-primary"
+            className="btn btn-danger"
             onClick={(e) => {
               e.preventDefault();
-              window.location.href = '/products/edit/' + props.shipment._id;
+              apis.deleteShipment(props.shipment._id);
             }}
           >
-            Update
+            Delete
           </a>
-          <a className="btn btn-danger"
-          onClick={(e) => {
-            e.preventDefault();
-            apis.deleteProduct(props.shipment._id);
-          }}
-          >Delete</a>
         </div>
       </div>
     </div>
