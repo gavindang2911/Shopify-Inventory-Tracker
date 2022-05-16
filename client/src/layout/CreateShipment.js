@@ -104,9 +104,9 @@ function CreateShipment() {
           })}
         </select>
         <label>
-          {' '}
           Quantity:
           <input
+            className="form-control"
             id={orderCount}
             type="number"
             min="1"
@@ -116,6 +116,8 @@ function CreateShipment() {
             required
           />
         </label>
+        <br />
+        <br />
       </form>,
     ]);
     console.log(orders);
@@ -123,7 +125,8 @@ function CreateShipment() {
 
   return (
     <div style={{ padding: '50px 70px 0 350px' }}>
-      <h2>Create Shipment To</h2>
+      <h2>Create Shipment</h2>
+      <h3>To:</h3>
 
       <div className="form-group">
         <label>First Name: </label>
@@ -141,12 +144,12 @@ function CreateShipment() {
         <input
           type="text"
           className="form-control"
-          placeholder="Enter Middle Name"
+          placeholder="Optinal"
           value={middleName}
           onChange={inputMiddleName}
         />
       </div>
-      <small>Optinal</small>
+
       <br />
       <div className="form-group">
         <label>Last Name: </label>
@@ -189,6 +192,7 @@ function CreateShipment() {
       <button className="btn btn-primary" onClick={addMoreProduct}>
         Add more products
       </button>
+      <br />
       <br />
       <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
         Create Shipment

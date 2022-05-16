@@ -4,7 +4,7 @@ import InventoryCard from '../components/Card/InventoryCard';
 
 function Inventory() {
   const styles = {
-    padding: '50px 0 0 0',
+    padding: '50px 0 0 350px',
   };
   const [products, setProducts] = useState();
 
