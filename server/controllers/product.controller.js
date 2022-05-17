@@ -22,6 +22,31 @@ const getAllProducts = async (req, res) => {
       });
     });
 };
+const getProductBySearch = async (req, res) => {
+  const { searchQuery } = req.query;
+
+  await Product.find({'category' : new RegExp(searchQuery, 'i')})
+    .then((doc) => {
+      console.log('first')
+      if (!doc)
+        return res.status(404).json({
+          success: false,
+          msgError: 'We do not have any Products',
+        });
+
+      console.log(doc);
+      return res.status(200).json({
+        success: true,
+        productSearchData: doc,
+      });
+    })
+    .catch((err) => {
+      res.status(403).json({
+        success: false,
+        msgError: err,
+      });
+    });
+};
 const getProductById = async (req, res) => {
   const { id } = req.params;
 
@@ -107,4 +132,5 @@ module.exports = {
   createProduct,
   updateProduct,
   deleteProduct,
+  getProductBySearch,
 };
