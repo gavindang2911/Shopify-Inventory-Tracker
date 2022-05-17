@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import {  useNavigate} from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import FileBase from 'react-file-base64';
 
 import apis from '../axios/api';
 
@@ -13,6 +14,7 @@ function EditProduct() {
   const [description, setdescription] = useState();
   const [price, setprice] = useState();
   const [quantity, setquantity] = useState();
+  const [selectedFile, setselectedFile] = useState();
 
   useEffect(() => {
     apis.getProduct(id).then((doc) => {
@@ -45,8 +47,7 @@ function EditProduct() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const inventory = { name, category, price, description, quantity };
-    console.log(inventory);
+    const inventory = { name, category, price, description, quantity, selectedFile };
     apis
       .updateProduct(id, inventory)
       .then((doc) => {
@@ -119,6 +120,8 @@ function EditProduct() {
           onChange={inputProductQuantity}
         />
       </div>
+      <br />
+      <div><FileBase type="file" multiple={false} onDone={({ base64 }) => setselectedFile(base64)} /></div>
       <br />
       <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
         Update

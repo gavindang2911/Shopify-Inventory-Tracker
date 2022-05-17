@@ -55,7 +55,6 @@ function CreateShipment() {
       address,
       orders,
     };
-    console.log(shipment);
     await apis
       .createShipment(shipment)
       .then((doc) => {

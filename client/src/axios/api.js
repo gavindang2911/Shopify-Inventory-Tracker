@@ -20,6 +20,19 @@ const getProduct = (id) => {
   return apiURL.get(`/product/${id}`);
 };
 
+const getProductBySearch = async (searchQuery) => {
+  // try {
+  //   const { data: { data } } = await api.fetchPostsBySearch(searchQuery);
+
+  //   dispatch({ type: FETCH_BY_SEARCH, payload: { data } });
+  //   dispatch({ type: END_LOADING });
+  // } catch (error) {
+  //   console.log(error);
+  // }
+  return apiURL.get(`products/search?searchQuery=${searchQuery || 'none'}`);
+};
+
+
 const getShipments = () => {
   return apiURL.get(`/shipments`);
 };
@@ -42,6 +55,7 @@ const apis = {
   updateProduct,
   deleteProduct,
   getProduct,
+  getProductBySearch,
   getShipments,
   createShipment,
   updateShipment,

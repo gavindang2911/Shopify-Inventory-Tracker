@@ -19,6 +19,7 @@ const AppRoutes = () => {
           <Route path="/products" exact element={<Inventory />} />
           <Route path="/product/create" exact element={<CreateProduct />} />
           <Route path="/products/edit/:id" exact element={<EditProduct />} />
+          <Route path="/products/search" exact element={<Inventory />} />
           <Route path="/shipments" exact element={<Shipments />} />
           <Route path="/shipment/create" exact element={<CreateShipment />} />
         </Routes>

@@ -27,7 +27,6 @@ const getProductBySearch = async (req, res) => {
 
   await Product.find({'category' : new RegExp(searchQuery, 'i')})
     .then((doc) => {
-      console.log('first')
       if (!doc)
         return res.status(404).json({
           success: false,

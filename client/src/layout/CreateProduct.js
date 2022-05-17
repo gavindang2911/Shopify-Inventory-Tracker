@@ -36,7 +36,6 @@ function CreateProduct() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(selectedFile)
     const inventory = { name, category, price, description, quantity, selectedFile};
     apis
       .createProduct(inventory)
