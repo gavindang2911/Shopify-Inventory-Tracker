@@ -1,6 +1,7 @@
 const express = require('express');
 const database = require('./db/index');
 const cors = require('cors')
+const path = require("path");
 
 require('dotenv').config();
 
@@ -18,6 +19,12 @@ app.use('/api', shipmentRoute);
 
 
 const PORT = process.env.PORT || 8000;
+// React production build static hosting
+app.use(express.static(path.join(__dirname, "build")));
+
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 
 app.route('/').get((req, res) => res.json('first api'));
 
