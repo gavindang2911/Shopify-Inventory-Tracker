@@ -8,9 +8,14 @@ function InventoryCard(props) {
     backgroundColor: 'white',
     alignItems: 'center',
     justifyItems: 'center',
+    justifyContent: 'center',
     margin: 20,
     width: 300,
+    borderRadius: '15px',
+    boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
+    transition: '0.3s',
   };
+
   const navigate = useNavigate();
 
   const handleEdit = (e) => {
@@ -18,22 +23,28 @@ function InventoryCard(props) {
     const id = props.product._id;
     navigate(generatePath('/products/edit/:id', { id }));
   };
-  return (
+  const imgString =
+    props.product.selectedFile ||
+    'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png';
+
+    return (
     <div className="card" style={styles}>
       <div>{props.product.category}</div>
-      <div
-        className="card-body"
-        style={{
-          backgroundColor: '#f0e7db',
-          width: 300,
-        }}
-      >
-        <h5 className="card-title">{props.product.name}</h5>
-        <h6 className="text-muted">Price Per Unit: ${props.product.price}</h6>
-        <h6 className="text-muted">
-          Stock Available: {props.product.quantity}
-        </h6>
-        <p className="card-text">{props.product.description}</p>
+      <div className="card-body">
+        <img src={'' + imgString} width="298" height="200" />
+
+        <div
+          style={{
+            padding: '10px 10px 10px 40px',
+          }}
+        >
+          <h5 className="card-title">{props.product.name}</h5>
+          <h6 className="text-muted">Price Per Unit: ${props.product.price}</h6>
+          <h6 className="text-muted">
+            Stock Available: {props.product.quantity}
+          </h6>
+          <p className="card-text">{props.product.description}</p>
+        </div>
         <br />
         <div className="d-flex  justify-content-around">
           <a className="btn btn-primary" onClick={handleEdit}>

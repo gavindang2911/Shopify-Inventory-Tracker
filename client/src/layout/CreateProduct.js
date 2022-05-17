@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import FileBase from 'react-file-base64';
 
 import apis from '../axios/api';
 
@@ -11,6 +12,7 @@ function CreateProduct() {
   const [description, setdescription] = useState();
   const [price, setprice] = useState();
   const [quantity, setquantity] = useState();
+  const [selectedFile, setselectedFile] = useState();
 
   const inputProductName = (e) => {
     e.preventDefault();
@@ -34,7 +36,8 @@ function CreateProduct() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const inventory = { name, category, price, description, quantity };
+    console.log(selectedFile)
+    const inventory = { name, category, price, description, quantity, selectedFile};
     apis
       .createProduct(inventory)
       .then((doc) => {
@@ -103,6 +106,8 @@ function CreateProduct() {
           onChange={inputProductQuantity}
         />
       </div>
+      <br />
+      <div><FileBase type="file" multiple={false} onDone={({ base64 }) => setselectedFile(base64)} /></div>
       <br />
       <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
         Create Product

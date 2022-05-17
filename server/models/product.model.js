@@ -7,6 +7,7 @@ const productSchema = new Schema({
   price: { type: Number, required: true, maxlength: 255 },
   description: { type: String, required: true, maxlength: 10000 },
   quantity: { type: Number, required: true },
+  selectedFile: { type: String },
 });
 
 module.exports = mongoose.model('Product', productSchema);
