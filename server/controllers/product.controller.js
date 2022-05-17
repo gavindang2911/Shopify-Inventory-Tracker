@@ -32,8 +32,6 @@ const getProductBySearch = async (req, res) => {
           success: false,
           msgError: 'We do not have any Products',
         });
-
-      console.log(doc);
       return res.status(200).json({
         success: true,
         productSearchData: doc,

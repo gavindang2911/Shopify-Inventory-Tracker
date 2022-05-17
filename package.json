@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:unit": "jest unit --verbose --testTimeout=10000 ",
+    "test:coverage": "jest --runInBand --coverage ",
     "client": "npm start --prefix client",
     "server": "nodemon server/index.js",
     "start": "node server/index.js"
@@ -18,5 +19,9 @@
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "mongoose": "^6.3.3"
+  },
+  "devDependencies": {
+    "jest": "^28.1.0",
+    "supertest": "^6.2.3"
   }
 }
