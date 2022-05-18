@@ -1,7 +1,7 @@
 const productController = require('../product.controller');
 const Product = require('../../models/product.model');
 const request = require('supertest');
-const app = require('../../index');
+const app = require('../../app.js');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
@@ -14,7 +14,7 @@ const expectedItem = {
 //     'Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday',
 //   quantity: 100,
 //   selectedFile: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
-    _id: '62840a38cbd48e98dff15713',
+    _id: '6284682bac35272b45ce8b79',
     name: "Samsung 49-Inch Curved Gaming Monitor (LC49HG90DMNXZA)",
     category: "Electronics",
     price: 999.99,
@@ -23,7 +23,7 @@ const expectedItem = {
     selectedFile: "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg"
 };
 const sampleProductChanged = {
-    _id: '62840a38cbd48e98dff15713',
+    _id: '6284682bac35272b45ce8b79',
     name: "Samsung 49-Inch Curved Gaming Monitor (LC49HG90DMNXZA)",
     category: "Electronics",
     price: 999.99,
@@ -48,18 +48,18 @@ const missingFieldsItem = {
 };
 
 
-beforeAll(async () => {
-  try {
-    const conn = await mongoose.connect(process.env.MONGO_URL, {
-      useUnifiedTopology: true,
-      useNewUrlParser: true,
-    });
-    console.log(`mongo database is connected!!! `);
-  } catch (error) {
-    console.error(`Error: ${error} `);
-    process.exit(1); //passing 1 - will exit the proccess with error
-  }
-});
+// beforeAll(async () => {
+//   try {
+//     const conn = await mongoose.connect(process.env.MONGO_URL, {
+//       useUnifiedTopology: true,
+//       useNewUrlParser: true,
+//     });
+//     console.log(`mongo database is connected!!! `);
+//   } catch (error) {
+//     console.error(`Error: ${error} `);
+//     process.exit(1); //passing 1 - will exit the proccess with error
+//   }
+// });
 
 describe("POST /product", () => {
     describe("Test create Product Fail", () => {
@@ -92,7 +92,7 @@ describe("POST /product", () => {
 
     describe("Test create Product Successfully", () => {
       test("Test response status code 200", async () => {
-        const res = await request(app).post("/api/product").send(expectedItem);
+        const res = await request(app).post("/api/product").send(newItem);
         expect(res.statusCode).toBe(200);
       });
       test("Test object data return after creat product", async () => {
@@ -259,7 +259,7 @@ describe('GET /product/:id', () => {
 
 
 
-afterAll((done) => {
-  mongoose.connection.close();
-  done();
-});
+// afterAll((done) => {
+//   mongoose.connection.close();
+//   done();
+// });

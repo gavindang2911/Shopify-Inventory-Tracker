@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:unit": "jest unit --verbose --testTimeout=10000 ",
+    "test:unit": "jest unit --verbose",
     "test:coverage": "jest --runInBand --coverage ",
     "client": "npm start --prefix client",
     "server": "nodemon server/index.js",
