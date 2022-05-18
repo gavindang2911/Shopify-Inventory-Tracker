@@ -50,19 +50,6 @@ const missingFieldsShipment = {
 };
 
 
-// beforeAll(async () => {
-//     try {
-//       const conn = await mongoose.connect(process.env.MONGO_URL, {
-//         useUnifiedTopology: true,
-//         useNewUrlParser: true,
-//       });
-//       console.log(`mongo database is connected!!! `);
-//     } catch (error) {
-//       console.error(`Error: ${error} `);
-//       process.exit(1); //passing 1 - will exit the proccess with error
-//     }
-//   });
-
 describe("POST /shipment", () => {
     describe("Test create Shipment Fail", () => {
       test("Test response status code 403", async () => {
@@ -178,20 +165,9 @@ describe('GET /shipment/:id', () => {
         expect(res.statusCode).toBe(404);
       });
 
-    //   test("Test return invalid message", async () => {
-    //     const res = await request(app).delete("/api/shipment/626faa77e898b740c402eb23").send();
-    //     expect(res.body.error).toBe("Shipment not found");
-    //   });
-
       test("Test header Json return", async () => {
         const res = await request(app).delete("/api/shipment/asdf").send();
         expect(res.headers["content-type"]).toEqual("text/html; charset=utf-8");
       });
     });
   });
-
-
-// afterAll((done) => {
-//     mongoose.connection.close();
-//     done();
-//   });

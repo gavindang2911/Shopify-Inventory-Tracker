@@ -29,7 +29,7 @@ function InventoryCard(props) {
 
     return (
     <div className="card" style={styles}>
-      <div>{props.product.category}</div>
+      <h5 className="text-muted">{props.product.category}</h5>
       <div className="card-body">
         <img src={'' + imgString} width="298" height="200" />
 
@@ -43,7 +43,7 @@ function InventoryCard(props) {
           <h6 className="text-muted">
             Stock Available: {props.product.quantity}
           </h6>
-          <p className="card-text">{props.product.description}</p>
+          <p className="card-text">{props.product.description.substring(0, 80)}</p>
         </div>
         <br />
         <div className="d-flex  justify-content-around">
